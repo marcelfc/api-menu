@@ -3,10 +3,10 @@ import 'reflect-metadata'
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
 import routes from './routes'
-import uploadConfig from './config/upload'
+import uploadConfig from '@config/upload'
 
-import './database'
-import AppError from './errors/AppError'
+import '@shared/infra/typeorm'
+import AppError from '@shared/errors/AppError'
 
 const app = express()
 
@@ -21,6 +21,7 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
             message: err.message
         })
     } else {
+        console.log(err)
         return response.status(500).json({
             status: 'error',
             message: 'Internal server error'
