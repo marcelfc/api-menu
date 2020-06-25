@@ -1,5 +1,5 @@
 import Appointment from '@modules/appointments/infra/typeorm/entities/appointment'
-import IAppointmentsRepository from '@modules/appointments/repositories/iAppointmentsRepository'
+import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository'
 import { getRepository, Repository } from 'typeorm'
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO'
 
