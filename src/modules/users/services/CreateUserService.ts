@@ -1,6 +1,6 @@
-import User from '../infra/typeorm/entities/user'
-
 import { hash } from 'bcryptjs'
+
+import User from '../infra/typeorm/entities/user'
 import AppError from '@shared/errors/AppError'
 import IUsersRepository from '../repositories/IUsersRepository'
 
