@@ -1,7 +1,6 @@
 import User from '../infra/typeorm/entities/user'
 import AppError from '@shared/errors/AppError'
 import UsersRepository from '../infra/typeorm/repositories/UsersRepository'
-import IEmailProvider from '@shared/container/providers/MailProvider/models/IMailProvider'
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider'
 import IUsersTokenRepository from '../repositories/IUsersTokenRepository'
 
