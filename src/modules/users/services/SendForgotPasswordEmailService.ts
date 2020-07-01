@@ -26,11 +26,13 @@ class SendForgotPasswordEmailService {
 
         await this.usersTokenRepository.generate(user.id)
 
-        const teste = new EtherealMailProvider()
+        // TO DO - verify e-mail strategy to recover password
 
-        console.log(teste)
+        // const teste = new EtherealMailProvider()
 
-        await this.mailProvider.sendMail(email, 'Pedido de recuperação de senha')
+        // console.log(teste)
+
+        // await this.mailProvider.sendMail(email, 'Pedido de recuperação de senha')
     }
 }
 
