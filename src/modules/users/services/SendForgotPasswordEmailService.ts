@@ -1,8 +1,8 @@
-import User from '../infra/typeorm/entities/user'
 import AppError from '@shared/errors/AppError'
-import UsersRepository from '../infra/typeorm/repositories/UsersRepository'
+import IUsersRepository from '../repositories/IUsersRepository'
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider'
 import IUsersTokenRepository from '../repositories/IUsersTokenRepository'
+import EtherealMailProvider from '@shared/container/providers/MailProvider/implementations/EtherealMailProvider'
 
 interface Request {
     email: string;
@@ -11,7 +11,7 @@ interface Request {
 class SendForgotPasswordEmailService {
 
     constructor(
-        private usersRepository: UsersRepository,
+        private usersRepository: IUsersRepository,
         private mailProvider: IMailProvider,
         private usersTokenRepository: IUsersTokenRepository
     ) { }
@@ -26,7 +26,11 @@ class SendForgotPasswordEmailService {
 
         await this.usersTokenRepository.generate(user.id)
 
-        this.mailProvider.sendMail(email, 'Pedido de recuperação de senha')
+        const teste = new EtherealMailProvider()
+
+        console.log(teste)
+
+        await this.mailProvider.sendMail(email, 'Pedido de recuperação de senha')
     }
 }
 
