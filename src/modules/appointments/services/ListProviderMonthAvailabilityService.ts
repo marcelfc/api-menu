@@ -1,4 +1,4 @@
-import User from '@modules/users/infra/typeorm/entities/user'
+import { getDaysInMonth, getDate } from 'date-fns'
 import AppointmentsRepository from '../infra/typeorm/repositories/AppointmentsRepository'
 
 interface Request {
@@ -23,6 +23,28 @@ class ListProviderMonthAvailabilityService {
             .findAllInMonthFromProvider(
                 { provider_id, month, year }
             )
+
+        const numberOfDaysInMonth = getDaysInMonth(
+            new Date(year, month-1)
+        )
+
+        const eachDayArray = Array.from(
+            { length: numberOfDaysInMonth },
+            (value, index) => index + 1
+        )
+
+        const availability = eachDayArray.map(day => {
+            const appointmentsInDay = appointments.filter(appointment => {
+                return getDate(appointment.date) === day
+            })
+
+            return {
+                day,
+                available: appointmentsInDay.length < 10
+            }
+        })
+
+        return availability
     }
 }
 
